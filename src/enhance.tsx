@@ -1,4 +1,5 @@
-import { AnyComponent, ComponentConstructor } from './common-types';
+import { ComponentConstructor } from 'preact';
+import { AnyComponent } from './common-types';
 
 export function enhance<T>(BaseComponent: AnyComponent<T>) {
     return new Enhancer<T>(BaseComponent);
