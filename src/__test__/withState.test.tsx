@@ -1,6 +1,5 @@
 import { withState } from '../withState';
 import { Component, h, render } from 'preact';
-import { delay } from '@cotto/utils.ts';
 
 const $root = document.body;
 let $el: Element & { _component?: any };
