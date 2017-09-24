@@ -1,5 +1,6 @@
 export * from './common-types';
 export { withHandlers } from './withHandlers';
+export { withEventStreamHandlers } from './withEventStreamHandlers';
 export { withState } from './withState';
 export { withContext } from './withContext';
 export { mapProps } from './mapProps';
