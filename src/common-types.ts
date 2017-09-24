@@ -18,3 +18,7 @@ export interface EventHandler {
 export type EventHandlers<T> = {
     [P in keyof T]: EventHandler
 };
+
+export interface Constant<T> {
+    (): T;
+}
