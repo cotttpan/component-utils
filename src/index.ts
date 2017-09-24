@@ -7,3 +7,4 @@ export { shouldUpdate } from './shouldUpdate';
 export { pure } from './pure';
 export { ChildCacheContainer } from './ChildCacheContainer';
 export { getDisplayName } from './getDisplayName';
+export { enhance } from './enhance';
