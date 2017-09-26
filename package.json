@@ -1,7 +1,7 @@
 {
   "name": "@cotto/component-utils",
   "description": "component-utils",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "cotto",
   "files": [
     "es",
