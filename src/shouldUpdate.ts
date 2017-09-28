@@ -1,11 +1,17 @@
-import { Component, h } from 'preact';
-import { AnyComponent, ComponentEnhancer } from './common-types';
+import { Component, h, ComponentConstructor } from 'preact';
+import { AnyComponent } from './common-types';
 import { getDisplayName } from './getDisplayName';
 
-export function shouldUpdate<RequiredProps>(
-    test: (props: RequiredProps, nextProps: RequiredProps) => boolean
-): ComponentEnhancer<RequiredProps, RequiredProps> {
-    return function enhance(BaseComponent: AnyComponent) {
+export namespace shouldUpdate {
+    export interface Enhancer<P> {
+        (BaseComponent: AnyComponent<P>): ComponentConstructor<P, {}>;
+    }
+}
+
+export function shouldUpdate<P>(
+    test: (props: P, nextProps: P) => boolean
+): shouldUpdate.Enhancer<P> {
+    return function enhance(BaseComponent: AnyComponent<P>) {
         return class ShouldUpdate extends Component<any, any> {
             static displayName = `shouldUpdate(${getDisplayName(BaseComponent)})`;
 

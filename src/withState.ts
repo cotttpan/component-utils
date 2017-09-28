@@ -1,6 +1,7 @@
-import { Component, h } from 'preact';
+import { Component, h, ComponentConstructor } from 'preact';
 import { getDisplayName } from './getDisplayName';
-import { AnyComponent, ComponentEnhancer } from './common-types';
+import { AnyComponent } from './common-types';
+import { Diff } from '@cotto/utils.ts';
 
 export namespace withState {
     export interface Updater<T> {
@@ -9,15 +10,20 @@ export namespace withState {
         <K extends keyof T>(fn: (value: T) => Pick<T, K>, callback?: Function): void;
         // tslint:enable:unified-signatures
     }
+
+    export interface Enhancer<InjectedProps, RequiredProps> {
+        <OwnProps extends InjectedProps>(
+            BaseComponent: AnyComponent<OwnProps>
+        ): ComponentConstructor<Diff<OwnProps, InjectedProps> & RequiredProps, any>;
+    }
 }
 
 export function withState<InjectedProps, RequiredProps = {}, K extends string = 'setState'>(
     initState: InjectedProps | ((props: RequiredProps) => InjectedProps),
     updateName: K = 'setState' as K
-): ComponentEnhancer<InjectedProps & {[P in K]: withState.Updater<InjectedProps>}, RequiredProps> {
+): withState.Enhancer<InjectedProps & {[P in K]: withState.Updater<InjectedProps>}, RequiredProps> {
 
     return function enhance(BaseComponent: AnyComponent<any>) {
-
         return class WithState extends Component<any, any> {
             static displayName = `withState(${getDisplayName(BaseComponent)})`;
 

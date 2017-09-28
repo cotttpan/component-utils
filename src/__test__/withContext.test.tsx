@@ -7,7 +7,7 @@ let $el: Element & { _component?: any };
 describe('withContext', () => {
     test('type chekc', () => {
         const view = (props: { n: number }) => null;
-        const hoc = withContext((props: { x: number }) => ({ ctx: 'ctx' }));
+        const hoc = withContext((props: { x: number, n: number }) => ({ ctx: props.x }));
         const Comp = hoc(view);
         const c = <Comp n={1} x={0} />;
     });

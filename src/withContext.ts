@@ -1,11 +1,18 @@
-import { Component, h } from 'preact';
+import { Component, h, ComponentConstructor } from 'preact';
 import { getDisplayName } from './getDisplayName';
-import { AnyComponent, ComponentEnhancer } from './common-types';
-import { Hash } from '@cotto/utils.ts';
+import { AnyComponent } from './common-types';
+
+export namespace withContext {
+    export interface Enhancer<RequiredProps> {
+        <OwnProps extends RequiredProps>(
+            BaseComponent: AnyComponent<OwnProps>
+        ): ComponentConstructor<OwnProps, {}>;
+    }
+}
 
 export function withContext<RequiredProps = {}>(
     contextCreator: (props: RequiredProps) => any
-): ComponentEnhancer<Hash, RequiredProps & Hash> {
+): withContext.Enhancer<RequiredProps> {
     return function enhance(BaseComponent: AnyComponent) {
         return class WithContext extends Component<any, any> {
             static displayName = `withContext(${getDisplayName(BaseComponent)})`;

@@ -1,14 +1,13 @@
 import { ComponentConstructor, FunctionalComponent } from 'preact';
 import { Diff, Overwrite } from '@cotto/utils.ts';
 
-export type ClassComponent<P, S> = ComponentConstructor<P, S> & { displayName?: string };
+export type AnyComponent<P = {}> = ComponentConstructor<P, any> | FunctionalComponent<P>;
 
-export type AnyComponent<P = {}> = ClassComponent<P, any> | FunctionalComponent<P>;
-
+// duplecatedしたい...
 export interface ComponentEnhancer<InjectedProps, RequiredProps> {
     <OwnProps /* extends InjectedProps */>(
         BaseComponent: AnyComponent<OwnProps & InjectedProps>
-    ): ClassComponent<Overwrite<Diff<OwnProps, InjectedProps>, RequiredProps>, any>;
+    ): ComponentConstructor<Overwrite<Diff<OwnProps, InjectedProps>, RequiredProps>, any>;
 }
 
 export interface EventHandler {

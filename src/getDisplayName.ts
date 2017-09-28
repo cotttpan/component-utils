@@ -1,8 +1,5 @@
-export interface Component {
-    displayName?: string;
-    name?: string;
-}
+import { Hash } from '@cotto/utils.ts';
 
-export function getDisplayName(component: Component) {
+export function getDisplayName(component: Hash) {
     return component.displayName || component.name || 'Component';
 }

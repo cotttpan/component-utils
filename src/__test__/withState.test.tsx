@@ -1,3 +1,4 @@
+
 import { withState } from '../withState';
 import { Component, h, render } from 'preact';
 
@@ -6,6 +7,7 @@ let $el: Element & { _component?: any };
 
 describe('withState', () => {
     interface Props {
+        x?: string;
         count: number;
         patch: withState.Updater<Props>;
     }
@@ -17,12 +19,10 @@ describe('withState', () => {
     test('type check', () => {
         const C1 = HOC1(View);
         const C2 = HOC2(View);
-        const c1 = () => (<C1 count={0} />);
-        const c2 = () => (<C2 />);
-    });
-
-    test('displayName', () => {
-        expect(HOC1(View).displayName).toBe('withState(View)');
+        const C3 = HOC1((props: { count: number }) => <div></div>);
+        const c1 = () => (<C1 count={0} x='' />);
+        const c2 = () => (<C2 x='' />);
+        const c3 = () => <C3 count={1} />;
     });
 
     test('update state via object and with completed callback', (done) => {
