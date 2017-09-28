@@ -1,5 +1,5 @@
 import { ComponentConstructor, FunctionalComponent } from 'preact';
-import { Diff } from '@cotto/utils.ts';
+import { Diff, Overwrite } from '@cotto/utils.ts';
 
 export type ClassComponent<P, S> = ComponentConstructor<P, S> & { displayName?: string };
 
@@ -8,7 +8,7 @@ export type AnyComponent<P = {}> = ClassComponent<P, any> | FunctionalComponent<
 export interface ComponentEnhancer<InjectedProps, RequiredProps> {
     <OwnProps /* extends InjectedProps */>(
         BaseComponent: AnyComponent<OwnProps & InjectedProps>
-    ): ClassComponent<Diff<OwnProps, InjectedProps> & RequiredProps, any>;
+    ): ClassComponent<Overwrite<Diff<OwnProps, InjectedProps>, RequiredProps>, any>;
 }
 
 export interface EventHandler {
