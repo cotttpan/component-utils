@@ -1,5 +1,3 @@
-import { Hash } from '@cotto/utils.ts';
-
-export function getDisplayName(component: Hash) {
-    return component.displayName || component.name || 'Component';
+export function getDisplayName(component: any): string {
+  return component == null ? '' :  component.displayName || component.name || 'Component'
 }

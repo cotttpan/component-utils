@@ -1,9 +1,10 @@
+import { AnyComponent } from 'preact'
 import { shouldUpdate } from './shouldUpdate'
+import shallowequal from 'shallowequal'
 import { not } from '@cotto/utils.ts'
-import { AnyComponent } from './common-types'
 
-const notShallowEq = not(require('shallowequal'))
+const notShallowEq = not(shallowequal) // tslint:disable-line
 
-export function pure<P>(BaseComponent: AnyComponent<P>) {
+export function pure<P>(BaseComponent: AnyComponent<P, any>) {
   return shouldUpdate<P>(notShallowEq)(BaseComponent)
 }

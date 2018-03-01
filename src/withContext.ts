@@ -1,29 +1,18 @@
-import { Component, h, ComponentConstructor } from 'preact';
-import { getDisplayName } from './getDisplayName';
-import { AnyComponent } from './common-types';
+import { Component, h, AnyComponent, ComponentConstructor } from 'preact'
+import { getDisplayName } from './getDisplayName'
 
-export namespace withContext {
-    export interface Enhancer<RequiredProps> {
-        <OwnProps extends RequiredProps>(
-            BaseComponent: AnyComponent<OwnProps>
-        ): ComponentConstructor<OwnProps, {}>;
+export function withContext<P1>(getChildContext: (props: P1) => any) {
+  return enhance
+  function enhance<P2>(BaseComponent: AnyComponent<P2, any>): ComponentConstructor<P1 & P2, any>
+  function enhance<P2>(BaseComponent: (props: P2, context?: any) => JSX.Element): ComponentConstructor<P1 & P2, any>
+  function enhance<P2>(BaseComponent: AnyComponent<P2, any>): ComponentConstructor<P1 & P2, any>
+  function enhance<P2>(BaseComponent: AnyComponent<P2, any>): ComponentConstructor<P1 & P2, any> {
+    return class WithContext extends Component<any, any> {
+      static displayName = `withContext(${getDisplayName(BaseComponent)})`
+      getChildContext = () => getChildContext(this.props)
+      render(props: any) {
+        return h(BaseComponent as any, props)
+      }
     }
-}
-
-export function withContext<RequiredProps = {}>(
-    contextCreator: (props: RequiredProps) => any
-): withContext.Enhancer<RequiredProps> {
-    return function enhance(BaseComponent: AnyComponent) {
-        return class WithContext extends Component<any, any> {
-            static displayName = `withContext(${getDisplayName(BaseComponent)})`;
-
-            getChildContext() {
-                return contextCreator(this.props);
-            }
-
-            render() {
-                return h(BaseComponent, this.props);
-            }
-        };
-    };
+  }
 }
