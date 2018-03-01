@@ -1,9 +1,8 @@
 import { AnyComponent } from 'preact'
 import { shouldUpdate } from './shouldUpdate'
-import shallowequal from 'shallowequal'
 import { not } from '@cotto/utils.ts'
-
-const notShallowEq = not(shallowequal) // tslint:disable-line
+const shallowequal = require('shallowequal')// tslint:disable-line
+const notShallowEq = not(shallowequal)
 
 export function pure<P>(BaseComponent: AnyComponent<P, any>) {
   return shouldUpdate<P>(notShallowEq)(BaseComponent)

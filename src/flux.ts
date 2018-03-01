@@ -7,7 +7,8 @@ import { async } from 'rxjs/scheduler/async'
 import { map, scan, distinctUntilChanged, shareReplay, filter, observeOn } from 'rxjs/operators'
 import { EventSource, Command, isCommand, Dispatcher } from 'command-bus'
 import { Renderer, renderProps } from './renderProps'
-import shallowequal from 'shallowequal'
+
+const shallowequal = require('shallowequal') // tslint:disable-line
 
 export interface Reducer<T> {
   (state: T): T
