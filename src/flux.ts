@@ -4,11 +4,10 @@ import { Subscription } from 'rxjs/Subscription'
 import { BehaviorSubject } from 'rxjs/BehaviorSubject'
 import { of } from 'rxjs/observable/of'
 import { async } from 'rxjs/scheduler/async'
-import { map, scan, distinctUntilChanged, shareReplay, filter, observeOn } from 'rxjs/operators'
+import { map, filter, observeOn } from 'rxjs/operators'
 import { EventSource, Command, isCommand, Dispatcher } from 'command-bus'
 import { Renderer, renderProps } from './renderProps'
-
-const shallowequal = require('shallowequal') // tslint:disable-line
+import { store } from './store'
 
 export interface Reducer<T> {
   (state: T): T
@@ -80,15 +79,3 @@ export function flux<P, S, C>({ name, model, epic, inject, view }: FluxOptions<P
     }
   }
 }
-
-//
-// ─── UTILS ──────────────────────────────────────────────────────────────────────
-//
-export const store = <S>(init?: S) => (reducer$: Observable<Reducer<S>>): Observable<S> => {
-  return reducer$.pipe(
-    scan((state: S, reducer: Reducer<S>) => reducer(state), init || {} as S),
-    distinctUntilChanged(shallowequal),
-    shareReplay(1),
-  )
-}
-
