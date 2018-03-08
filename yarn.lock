@@ -28,9 +28,9 @@
   version "0.2.10"
   resolved "https://registry.yarnpkg.com/@cotto/utils.ts/-/utils.ts-0.2.10.tgz#60bd4309aa9bd4f208a6e0fcf77dbe3f8c5734c8"
 
-"@types/jest@^22.1.4":
-  version "22.1.4"
-  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-22.1.4.tgz#5c0c06a9bb495c67e0a78002a952f151e2ae58a1"
+"@types/jest@^22.2.0":
+  version "22.2.0"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-22.2.0.tgz#55ce83139f7ad1b48b414c3927746614c6963c0f"
 
 "@types/node@^9.4.6":
   version "9.4.6"
@@ -643,8 +643,8 @@ combined-stream@1.0.6, combined-stream@^1.0.5, combined-stream@~1.0.5:
     delayed-stream "~1.0.0"
 
 "command-bus@https://github.com/cotttpan/command-bus":
-  version "0.0.4"
-  resolved "https://github.com/cotttpan/command-bus#99b8d9e11908178a4b23223126e51c3677b5c705"
+  version "0.0.5"
+  resolved "https://github.com/cotttpan/command-bus#afa086323efcf096d2d06a77f46336092cb4cf0b"
   dependencies:
     "@cotto/utils.ts" "^0.2.10"
     eventemitter2 "^5.0.1"
@@ -3500,9 +3500,9 @@ trim-right@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/trim-right/-/trim-right-1.0.1.tgz#cb2e1203067e0c8de1f614094b9fe45704ea6003"
 
-ts-jest@^22.4.0:
-  version "22.4.0"
-  resolved "https://registry.yarnpkg.com/ts-jest/-/ts-jest-22.4.0.tgz#c9d3f9565696e0ad17e658eee96e06822af96bb9"
+ts-jest@^22.4.1:
+  version "22.4.1"
+  resolved "https://registry.yarnpkg.com/ts-jest/-/ts-jest-22.4.1.tgz#69defb2042d689cff9b4244365ef638ecd35f706"
   dependencies:
     babel-core "^6.24.1"
     babel-plugin-istanbul "^4.1.4"
