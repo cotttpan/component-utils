@@ -4,7 +4,6 @@ export { pure } from './pure'
 export { getDisplayName } from './getDisplayName'
 export { If } from './If'
 export { FluxOptions, flux } from './flux'
-export { fromEventSourceContainer } from './fromEventSourceContainer'
 /* utils */
 export { renderProps, Renderer } from './renderProps'
 export { store } from './store'
