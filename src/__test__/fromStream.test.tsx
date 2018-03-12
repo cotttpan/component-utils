@@ -36,7 +36,7 @@ test('fromStream', async () => {
   expect.assertions(5)
 
   const dispatcher = new Dispatcher()
-  const Container = fromStream('Counter', factory)
+  const Container = fromStream(factory)
 
   class App extends Component<any, any> {
     getChildContext = () => ({ dispatcher })

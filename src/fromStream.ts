@@ -9,12 +9,9 @@ export type StreamFactory<T, U> = (props: T, context: any)
   => (props$: Observable<T>) => Observable<U>
 
 export function fromStream<T, U>(
-  name: string,
   factory: StreamFactory<T, U>,
 ): ComponentConstructor<T & Renderer<U>, any> {
   return class FromStreamContainer extends Component<T & Renderer<U>, any> {
-    static displayName = name
-
     state = { vdom: null }
     props$ = new BehaviorSubject(this.props)
     subscription: Subscription
