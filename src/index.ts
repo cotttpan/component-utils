@@ -1,3 +1,4 @@
+export { withDisplayName } from './withDisplayName'
 export { withContext } from './withContext'
 export { shouldUpdate } from './shouldUpdate'
 export { pure } from './pure'
